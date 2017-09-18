@@ -1,13 +1,13 @@
 <template>
   <div class="completed">
     <div class="pull-close">
-      <img src="../../images/pull-close.png" title="点击关闭已完成列表" v-on:click="cancelCompl">
+      <img src="../../images/pull-close.png" title="点击关闭已完成列表" v-on:click="closeCompl">
     </div>
     <h3>已完成的任务</h3>
     <div class="mu-date">
       <mu-date-picker v-model="chooseDay" autoOk :underlineShow="false" :maxDate="today" @input="changeTime"/>
     </div>
-    <completedTodo :chooseDay="theChooseDay" :todosByChooseDay="todosByChooseDay"/>
+    <completedTodo :chooseDay="theChooseDay" :todosByChooseDay="todosByChooseDay"v-on:cancelComplete="cancelComplete()"/>
   </div>
 </template>
 
@@ -39,6 +39,7 @@ export default {
     } 
   },
   methods: {
+    //选择日期查看已完成任务
     changeTime() {
       let minFinishedTime = getTime(this.chooseDay)
       let nextDay = minFinishedTime + 86400000
@@ -49,8 +50,13 @@ export default {
       console.log(this.todosByChooseDay)
       
     },
-    cancelCompl() {
+    //关闭已完成任务列表
+    closeCompl() {
       this.$emit("cancel")
+    },
+    //恢复任务为未完成
+    cancelComplete(){
+      this.changeTime()
     }
   },
 }

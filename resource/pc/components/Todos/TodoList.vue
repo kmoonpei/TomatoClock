@@ -64,17 +64,23 @@ export default {
     this.title = this.todo.title
   },
   computed: {
-    isOverdue() {
-      if(this.todo.assignedTime < getTime(this.today)){
-        return 'assTime'
-      }
+    isOverdue: {
+      get() {
+        if(this.todo.assignedTime < getTime(this.today)){
+          return 'assTime'
+        }
+      },
+      set(){}
     },
-    isCompleted() {
-      if(this.todo.finishedTime > -1){
-        return true
-      }
-      return false
-    }
+    isCompleted: {
+      get() {
+        if(this.todo.finishedTime > -1){
+          return true
+        }
+        return false
+      },
+      set(){}
+    },
   },
   methods: {
     changeTime() {

@@ -8,7 +8,7 @@
       <ul class="ul-todo" v-if="todosByChooseDay.length">
         <li class="li-todo" v-for="todo in todosByChooseDay" :key="todo.finisedTime">
           <div>
-            <mu-check-box class="check-box" v-model="isCompleted" @change="cancelComplete(todo)"/>
+            <mu-check-box class="check-box" v-model="isCompleted" v-on:change="cancelComplete(todo)"/>
             <p class="todo-title">{{ todo.title }}</p>
           </div>
         </li>
@@ -28,7 +28,7 @@ export default {
   name: 'conpleted-todo',
   data() {
     return {
-      // theChooseDay: '',
+
     }
   },
   props: {
@@ -40,26 +40,34 @@ export default {
     }
   },
   components: { muCheckBox },
-  // created(){
-  //   this.theChooseDay = format(this.chooseDay,"YYYY-MM-DD")
-  // }
   computed: {
-    theChooseDay(){
-      return format(this.chooseDay,"YYYY-MM-DD")
+    theChooseDay: {
+      get(){
+            return format(this.chooseDay,"YYYY-MM-DD")
+          },
+      set(){}
     },
-    isShowHint(){
-      if(this.todosByChooseDay == []){
+    isShowHint: {
+      get(){
+        if(this.todosByChooseDay == []){
+          return true
+        }
+        return false
+      },
+      set(){}
+    },
+    isCompleted: {
+      get(){
         return true
-      }
-      return false
+      },
+      set(){}
     },
-    isCompleted(){
-      return true
-    }
   },
   methods: {
+    //恢复任务为未完成
     cancelComplete(todo){
       this.$store.dispatch('cancelComplete',todo.createdTime)
+      this.$emit('cancelComplete')
     }
   }
 }
