@@ -1,0 +1,53 @@
+@import 'mixin.scss';
+@import 'vars.scss';
+
+
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.main {
+  margin: 0 auto;
+  width: 980px;
+  padding-bottom: 10px; 
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px; 
+  background-color: #fff;
+
+}
+
+
+ .mu-color {
+    color: $accent-color !important;
+  }
+
+  .mu-bgc {
+    background-color: $accent-color !important;
+  }
+
+  .mu-fontWeight {
+    font-weight: 500 !important;
+  }
+  
+  ul {
+    @include clearListStyle;
+  }
+
+  .mu-checkbox-icon-checked{
+    color: $accent-color !important;
+  }
+  
+  .mu-icon-button {
+    position: absolute !important;
+    padding: 0 !important;
+  }
+
+  .mu-icon {
+    font-size: 40px;
+    cursor: inherit;
+}
+
+ 
+  
